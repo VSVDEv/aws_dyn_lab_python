@@ -17,6 +17,15 @@ def main(ddbClient):
 def queryNotesByPartitionKey(ddbClient, tableName, qUserId):
     ## TODO 5: Add code to query for a specific not with the parameter 
     # values available for use.
+    response = ddbClient.query(
+        TableName=tableName,
+        KeyConditionExpression='UserId = :userId',
+        ExpressionAttributeValues={
+            ':userId': {"S": qUserId}
+        },
+        ProjectionExpression="NoteId, Note"
+    )
+
     
     
     
